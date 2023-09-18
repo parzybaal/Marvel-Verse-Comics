@@ -1,0 +1,25 @@
+.card_container {
+    .image_container {  
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        .comics_image {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+        }
+    }   
+    span {
+        font-size: 14px;
+    }
+    .card_characters {
+        display: flex;
+        flex-direction: column;
+        margin-top: 8px;
+        li {
+            font-size: 14px;
+        } 
+    }
+    
+}

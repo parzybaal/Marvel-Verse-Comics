@@ -1,12 +1,13 @@
+import ComicsContainer from "../../components/Container/ComicsContainer"
 import "./Home.scss"
 
-function Home() {
+
+const Home = () => {
+
     return (
-        <main>
-            <header>Titulo</header>
-            <section>Contenido</section>
-            <footer>Pie de página</footer>
-        </main>
+        <>
+            <ComicsContainer></ComicsContainer>
+        </>
     )
 }
 

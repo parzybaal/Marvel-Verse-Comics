@@ -1,12 +1,13 @@
+import "./Navbar.scss"
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { setComicsFiltered } from "../../redux/slice/comicSlice";
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -36,6 +37,8 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'black',
+    borderRadius: '25px',
+    border: '0.1px solid rgba(0, 0, 0, 0.44)',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
@@ -51,33 +54,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+
+    const dispatch = useDispatch();
+    const [search, setSearch] = useState("");
+
+    const handleChange = (event) => {
+        const searchText = event.target.value;
+        setSearch(searchText);
+        dispatch(setComicsFiltered(searchText));
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed" color="default">
-                <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="black"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        color="black"
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        MUI
-                    </Typography>
+            <AppBar className="navbar_container" position="fixed" color="default">
+                <Toolbar >
+                    <img className='logo' src="https://w7.pngwing.com/pngs/419/220/png-transparent-logo-marvel-comics-marvel-entertainment-marvel-studios-others-comics-avengers-text.png" alt="logo_de_marvel" />
+                    <Box sx={{ flexGrow: 1 }} />
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
                         <StyledInputBase
+                            onChange={handleChange}
+                            value={search}
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
                         />

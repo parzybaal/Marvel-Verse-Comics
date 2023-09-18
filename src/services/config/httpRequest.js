@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "localhost:4000/backend"
+const URL = "https://gateway.marvel.com:443/v1/public"
 
 const http = axios.create({
     baseURL: URL,
@@ -10,9 +10,7 @@ const http = axios.create({
 })
 
 http.interceptors.request.use(function(config){
-    const persistLocal = localStorage.getItem("persist:root")
-    const token = null
-    if (token) config.headers = {...config, Authorization: `Bearer ${persistLocal}`}
+    /* config.headers = {...config, Authorization: `Bearer ${token}`} */
     return config
 }, function(error){
     return Promise.reject(error)

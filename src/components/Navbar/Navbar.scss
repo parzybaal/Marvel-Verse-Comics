@@ -1,0 +1,10 @@
+.navbar_container {
+    display: flex;
+    justify-content: space-between;
+    .logo {
+        display: flex;
+        justify-content: flex-start;
+        width: auto;
+        height: 60px;
+    }
+}
